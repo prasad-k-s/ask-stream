@@ -380,6 +380,12 @@ button:disabled {
   color: var(--accent);
 }
 
+.prose hr {
+  margin: 1.8em 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
 .prose blockquote {
   padding-left: 1em;
   border-left: 3px solid var(--line);
@@ -611,6 +617,8 @@ button:disabled {
   background: transparent;
   line-height: 1.5;
   padding: 4px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .composer textarea::placeholder {

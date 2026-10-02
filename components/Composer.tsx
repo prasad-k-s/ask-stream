@@ -1,8 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type FormEvent,
+  type KeyboardEvent,
+} from "react";
 
 const MAX_LENGTH = 2000;
+const MAX_HEIGHT = 220;
 
 export function Composer({
   isBusy,
@@ -19,12 +28,32 @@ export function Composer({
   const ref = useRef<HTMLTextAreaElement>(null);
 
   // Grow with content up to a max height, then scroll.
-  useEffect(() => {
+  const resize = useCallback(() => {
     const el = ref.current;
     if (!el) return;
     el.style.height = "auto";
-    el.style.height = `${Math.min(el.scrollHeight, 220)}px`;
-  }, [value]);
+    el.style.height = `${Math.min(el.scrollHeight, MAX_HEIGHT)}px`;
+  }, []);
+
+  useLayoutEffect(resize, [value, resize]);
+
+  // Chrome counts placeholder text in scrollHeight, so a measurement taken
+  // before CSS and fonts settle can come out far too tall. Re-measure when the
+  // box's width changes and once web fonts have loaded.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let lastWidth = el.clientWidth;
+    const observer = new ResizeObserver(() => {
+      if (el.clientWidth !== lastWidth) {
+        lastWidth = el.clientWidth;
+        resize();
+      }
+    });
+    observer.observe(el);
+    void document.fonts?.ready.then(resize);
+    return () => observer.disconnect();
+  }, [resize]);
 
   // Return focus to the box when an answer finishes.
   useEffect(() => {

@@ -1,15 +1,3 @@
-<!--
-  BEFORE PUBLISHING (this comment is invisible on GitHub):
-  1. Replace https://ask-stream.vercel.app with your real Vercel URL (2 places).
-  2. Add screenshots to the docs/ folder with exactly these names:
-       docs/screenshot-light.png   docs/screenshot-dark.png
-       docs/fallback.png           docs/demo.gif
-     See docs/SCREENSHOTS.md for what to capture.
-  3. If your repo name is not "ask-stream", update the GitHub links.
-  4. Check your name in the Author section at the bottom.
-  5. You can delete docs/SCREENSHOTS.md once the images are in.
--->
-
 # Ask: streaming LLM answers
 
 Ask a question and watch the answer stream in token by token, the way ChatGPT and Claude do.
@@ -20,21 +8,18 @@ hiding the streaming.
 [![React](https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Gemini API](https://img.shields.io/badge/Gemini-API-4285F4?logo=googlegemini&logoColor=white)](https://ai.google.dev)
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?logo=vercel)](https://ask-stream.vercel.app)
 
-**[Live demo](https://ask-stream.vercel.app)** &nbsp;|&nbsp;
 **[Source code](https://github.com/prasad-k-s/ask-stream)** &nbsp;|&nbsp;
 **[Author portfolio](https://prasad-sankar.vercel.app)**
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshot-dark.png">
-  <img alt="Ask app streaming an answer with the stream timeline under the question" src="docs/screenshot-light.png">
-</picture>
+![Ask app in light mode: a streamed answer with the stream timeline](docs/screenshot-light.png)
 
 <details>
-<summary><b>Watch it stream (GIF)</b></summary>
+<summary><b>Dark mode</b></summary>
 <br>
-<img alt="Typing a question, the answer streaming in, then pressing Stop" src="docs/demo.gif">
+
+![Ask app in dark mode](docs/screenshot-dark.png)
+
 </details>
 
 ---
@@ -91,8 +76,6 @@ throw at you.
 **Security**
 - The API key lives only on the server and is sent in a header, never in a URL or the browser
 - Input validation and a per-IP rate limit (10 requests per minute) protect the key from abuse
-
-<img alt="The model was busy, so the app answered from a backup model and says so" src="docs/fallback.png" width="720">
 
 ## How it works
 
@@ -243,7 +226,7 @@ Press **Stop** or `Esc` mid-answer to see the stopped state.
 1. Push the repo to GitHub.
 2. On [vercel.com](https://vercel.com), click **Add New → Project** and import the repo.
 3. Under **Environment Variables**, add `GEMINI_API_KEY` (and the optional model settings).
-4. Click **Deploy**. Vercel gives you a URL like `https://ask-stream.vercel.app`.
+4. Click **Deploy**. Vercel gives you a public URL.
 
 Every later push to `main` redeploys automatically.
 
@@ -313,7 +296,7 @@ Google may use prompts to improve its models, so don't send anything confidentia
 
 ## Author
 
-**Prasad K S**, frontend developer (React, TypeScript, Next.js)
+**Prasad** ([@prasad-k-s](https://github.com/prasad-k-s)), frontend developer (React, TypeScript, Next.js)
 
 - Portfolio: [prasad-sankar.vercel.app](https://prasad-sankar.vercel.app)
 - GitHub: [@prasad-k-s](https://github.com/prasad-k-s)
