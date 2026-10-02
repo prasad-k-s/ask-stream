@@ -8,7 +8,9 @@ hiding the streaming.
 [![React](https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Gemini API](https://img.shields.io/badge/Gemini-API-4285F4?logo=googlegemini&logoColor=white)](https://ai.google.dev)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?logo=vercel)](https://prasad-ask-stream.vercel.app/)
 
+**[Live demo](https://prasad-ask-stream.vercel.app/)** &nbsp;|&nbsp;
 **[Source code](https://github.com/prasad-k-s/ask-stream)** &nbsp;|&nbsp;
 **[Author portfolio](https://prasad-sankar.vercel.app)**
 
@@ -226,7 +228,7 @@ Press **Stop** or `Esc` mid-answer to see the stopped state.
 1. Push the repo to GitHub.
 2. On [vercel.com](https://vercel.com), click **Add New → Project** and import the repo.
 3. Under **Environment Variables**, add `GEMINI_API_KEY` (and the optional model settings).
-4. Click **Deploy**. Vercel gives you a public URL.
+4. Click **Deploy**. Vercel gives you a public URL like the [live demo](https://prasad-ask-stream.vercel.app/).
 
 Every later push to `main` redeploys automatically.
 
