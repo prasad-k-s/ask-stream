@@ -7,6 +7,7 @@ import { Composer } from "./Composer";
 import { ErrorNotice } from "./ErrorNotice";
 import { Markdown } from "./Markdown";
 import { StreamTimeline } from "./StreamTimeline";
+import { ThemeToggle } from "./ThemeToggle";
 
 const EXAMPLES = [
   "Explain the JavaScript event loop with a small code example",
@@ -37,7 +38,10 @@ export function AskApp() {
           <button type="button" className="brand" onClick={stream.reset} disabled={!hasRun}>
             Ask
           </button>
-          <span className="site-header__model">Streaming answers from Gemini</span>
+          <div className="site-header__end">
+            <span className="site-header__model">Streaming answers from Gemini</span>
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 

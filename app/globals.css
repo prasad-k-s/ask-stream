@@ -7,6 +7,7 @@
   --line: #d9ded8;
   --accent: #2e52d6;
   --accent-soft: #dfe5fb;
+  --on-accent: #ffffff;
   --error: #b23a2e;
   --error-soft: #f7e4e1;
   --code-bg: #f6f7f4;
@@ -25,27 +26,28 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #14191b;
-    --surface: #1b2225;
-    --ink: #e4eaec;
-    --muted: #93a0a6;
-    --line: #2c3539;
-    --accent: #8aa2ff;
-    --accent-soft: #232d4d;
-    --error: #f08f83;
-    --error-soft: #3a2220;
-    --code-bg: #11161a;
+/* Dark theme. A tiny script in layout.tsx sets data-theme on <html> before
+   the first paint, from the saved choice or the system setting. */
+:root[data-theme="dark"] {
+  --bg: #14191b;
+  --surface: #1b2225;
+  --ink: #e4eaec;
+  --muted: #93a0a6;
+  --line: #2c3539;
+  --accent: #8aa2ff;
+  --accent-soft: #232d4d;
+  --on-accent: #10151f;
+  --error: #f08f83;
+  --error-soft: #3a2220;
+  --code-bg: #11161a;
 
-    --syn-keyword: #e290d4;
-    --syn-string: #8fd19e;
-    --syn-number: #f2b07a;
-    --syn-title: #8aa2ff;
-    --syn-comment: #6d7a80;
+  --syn-keyword: #e290d4;
+  --syn-string: #8fd19e;
+  --syn-number: #f2b07a;
+  --syn-title: #8aa2ff;
+  --syn-comment: #6d7a80;
 
-    color-scheme: dark;
-  }
+  color-scheme: dark;
 }
 
 /* ---------- Base ---------- */
@@ -132,7 +134,7 @@ button:disabled {
 
 .site-header__inner {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   padding-block: 14px;
 }
@@ -150,9 +152,48 @@ button:disabled {
   cursor: default;
 }
 
+.site-header__end {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
 .site-header__model {
   color: var(--muted);
   font-size: 0.875rem;
+}
+
+/* Theme toggle: both icons are rendered, CSS shows the one for the
+   theme you'd switch TO, so the server and client markup always match. */
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.theme-toggle .icon-sun,
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+  display: block;
 }
 
 /* ---------- Main ---------- */
@@ -541,11 +582,7 @@ button:disabled {
 
 .button--send {
   background: var(--accent);
-  color: #fff;
-}
-
-@media (prefers-color-scheme: dark) {
-  .button--send { color: #10151f; }
+  color: var(--on-accent);
 }
 
 .button--send:disabled {
@@ -639,6 +676,7 @@ button:disabled {
 }
 
 @media (max-width: 520px) {
+  .site-header__model { display: none; }
   .composer__hint { display: none; }
   .composer__row { justify-content: flex-end; }
   .main { padding-top: 32px; }
